@@ -1,0 +1,81 @@
+#
+# Copyright (C) 2016+ AzerothCore <www.azerothcore.org>
+# Module: mod-shaman-tweaks
+#
+# Toggle any option without rebuilding. After editing this file:
+#   1. Copy it next to worldserver (or edit the installed shaman_tweaks.conf)
+#   2. Restart worldserver, OR run: .reload config
+#      (spell teaching is applied on next login / level-up)
+#
+
+[worldserver]
+
+########################################
+# Shaman Tweaks
+########################################
+#
+#    ShamanTweaks.Enable
+#        Description: Master switch for the whole module.
+#        Default:     1 - Enabled
+#                     0 - Disabled (vanilla shaman behaviour)
+#
+
+ShamanTweaks.Enable = 1
+
+#
+#    ShamanTweaks.GhostWolfInstant
+#        Description: Ghost Wolf (2645) becomes an instant cast.
+#                     Server-side is instant immediately. The 3.3.5 client
+#                     still reads a 2s cast from Spell.dbc, so you may see a
+#                     brief cast bar that completes as soon as the server
+#                     answers. Optional client DBC patch is documented in README.
+#        Default:     1
+#
+
+ShamanTweaks.GhostWolfInstant = 1
+
+#
+#    ShamanTweaks.LavaBurstRefreshFlameShock
+#        Description: When Lava Burst hits, any of YOUR Flame Shock DoTs on
+#                     that target are refreshed to full duration.
+#        Default:     1
+#
+
+ShamanTweaks.LavaBurstRefreshFlameShock = 1
+
+#
+#    ShamanTweaks.LavaBurstExtraRanks
+#        Description: Enable extra Lava Burst ranks and the remapped vanilla ranks:
+#                       Rank 1  level 10   81-95
+#                       Rank 2  level 20   150-171
+#                       Rank 3  level 30   309-350
+#                       Rank 4  level 40   408-460
+#                       Rank 5  level 50   624-700
+#                       Rank 6  level 60   891-1017
+#                       Rank 7  level 70   1015-1160
+#                       Rank 8  level 75   1012-1290   (vanilla 51505)
+#                       Rank 9  level 80   1200-1550   (vanilla 60043, new damage)
+#                     All ranks cost 10% of base mana.
+#
+#                     How it is delivered:
+#                       - If custom spells 910001-910007 exist (module SQL applied),
+#                         shamans auto-learn the matching rank on login / level-up
+#                         and trainers that already teach Lava Burst also offer them.
+#                       - If those spells are missing, the module falls back to
+#                         teaching vanilla Lava Burst (51505) at level 10 and
+#                         scaling its damage to the table above. Playerbots work
+#                         with this fallback automatically.
+#        Default:     1
+#
+
+ShamanTweaks.LavaBurstExtraRanks = 1
+
+#
+#    ShamanTweaks.AutoLearnRanks
+#        Description: Automatically teach / unlearn Lava Burst ranks on login
+#                     and level-up so playerbots and characters that skip
+#                     trainers still get the right rank. 0 = trainers only.
+#        Default:     1
+#
+
+ShamanTweaks.AutoLearnRanks = 1
